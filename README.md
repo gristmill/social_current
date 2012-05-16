@@ -1,4 +1,4 @@
-# Github Activity
+# Social Current
 
 Makes it easy to integrate the Github activity stream into your application.
 
@@ -6,7 +6,7 @@ Makes it easy to integrate the Github activity stream into your application.
 
 Add this line to your application's Gemfile:
 
-    gem 'github_activity'
+    gem 'social_current'
 
 And then execute:
 
@@ -14,13 +14,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install github_activity
+    $ gem install social_current
 
 ## Usage
 
-Within your view.
-
-    <%= GithubActivity::Stream.new("tristanoneil").as_html %>
+TODO: Add usage instructions.
 
 ## Contributing
 
