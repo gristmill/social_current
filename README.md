@@ -18,7 +18,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Add usage instructions.
+You may use Social Current directly within your view like.
+
+```ruby
+<% SocialCurrent::Stream.new({ :twitter => "tristanoneil", :github => "tristanoneil" }).each do |item| %>
+  <%= item[:message] >
+<% end %>
+```
+
+Though it's probably a better idea to add a method to a class or model like.
+
+```ruby
+class User < ActiveRecord::Base
+  def stream
+    SocialCurrent::Stream.new({ :twitter => twitter_username, :github => github_username })
+  end
+end
+```
+
+Then you can easily access this from within your view like.
+
+```ruby
+<% @user.stream.each do |item| %>
+  <%= item[:message] >
+<% end %>
+```
 
 ## Contributing
 
