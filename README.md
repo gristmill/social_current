@@ -2,6 +2,8 @@
 
 Makes it easy to integrate a social activity stream into your application from third party APIs. Social Current currently only supports GitHub and Twitter but feel free to contribute additional integrations.
 
+![Social Current Example](http://f.cl.ly/items/3V2J2E0F1q3N401H1w3x/social_current.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:
