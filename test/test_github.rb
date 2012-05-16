@@ -1,34 +1,33 @@
 require "test_helper"
 
-class TestGitHub < Test::Unit::TestCase
+class TestGithub < Test::Unit::TestCase
   def setup
-    @stream = SocialCurrent::GitHub.new("tristanoneil")
+    @github = SocialCurrent::Github.new("tristanoneil")
   end
 
   def test_initialize
-    assert_instance_of SocialCurrent::GitHub, @stream
-    assert_respond_to @stream, :raw_stream
+    assert_instance_of SocialCurrent::Github, @github
+    assert_respond_to @github, :raw_stream
   end
 
   def test_raw_user
-    assert_equal "Tristan O'Neil", @stream.raw_user["name"]
+    assert_equal "Tristan O'Neil", @github.raw_user["name"]
   end
 
   def test_raw_stream
-    assert_respond_to @stream.raw_stream, :body
-    assert_equal @stream.raw_stream[0]["type"], "PushEvent"
+    assert_equal @github.raw_stream[0]["type"], "PushEvent"
   end
 
-  def test_messages
-    assert_equal "Tristan O'Neil pushed to <a href='http://github.com/tristanoneil/tristanoneil.github.com'>tristanoneil/tristanoneil.github.com</a>.", @stream.messages[0][:message]
-    assert_equal "2012-05-11T20:17:30Z", @stream.messages[0][:created_at]
-    assert_equal 30, @stream.messages.size
+  def test_stream
+    assert_equal "Tristan O'Neil pushed to <a href='http://github.com/tristanoneil/tristanoneil.github.com'>tristanoneil/tristanoneil.github.com</a>.", @github.stream[0][:message]
+    assert_equal "2012-05-11 20:17:30 UTC", @github.stream[0][:created_at].to_s
+    assert_equal 30, @github.stream.size
   end
 
-  def test_format
-    assert_equal "Tristan O'Neil pushed to <a href='http://github.com/tristanoneil/tristanoneil.github.com'>tristanoneil/tristanoneil.github.com</a>.", @stream.format_message(@stream.raw_stream[0])
-    assert_equal "Tristan O'Neil followed <a href='https://github.com/mikefowler'>Mike Fowler</a>.", @stream.format_message(@stream.raw_stream[1])
-    assert_equal "Tristan O'Neil created <a href='http://github.com/tristanoneil/strike-water'>tristanoneil/strike-water</a>.", @stream.format_message(@stream.raw_stream[3])
-    assert_equal "Tristan O'Neil started watching <a href='http://github.com/gristmill/gauge'>gristmill/gauge</a>.", @stream.format_message(@stream.raw_stream[9])
+  def test_format_message
+    assert_equal "Tristan O'Neil pushed to <a href='http://github.com/tristanoneil/tristanoneil.github.com'>tristanoneil/tristanoneil.github.com</a>.", @github.format_message(@github.raw_stream[0])
+    assert_equal "Tristan O'Neil followed <a href='https://github.com/mikefowler'>Mike Fowler</a>.", @github.format_message(@github.raw_stream[1])
+    assert_equal "Tristan O'Neil created <a href='http://github.com/tristanoneil/strike-water'>tristanoneil/strike-water</a>.", @github.format_message(@github.raw_stream[3])
+    assert_equal "Tristan O'Neil started watching <a href='http://github.com/gristmill/gauge'>gristmill/gauge</a>.", @github.format_message(@github.raw_stream[9])
   end
 end

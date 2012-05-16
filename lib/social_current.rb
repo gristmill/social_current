@@ -1,9 +1,6 @@
-require "social_current/version"
 require "httparty"
+
+require "social_current/version"
 require "social_current/github"
-
-module SocialCurrent
-  class Stream
-
-  end
-end
+require "social_current/twitter"
+require "social_current/stream"

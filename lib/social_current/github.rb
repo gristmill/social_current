@@ -1,5 +1,5 @@
 module SocialCurrent
-  class GitHub
+  class Github
     include HTTParty
     base_uri "https://api.github.com"
 
@@ -17,9 +17,9 @@ module SocialCurrent
       @raw_stream ||= self.class.get("/users/#{@user}/events")
     end
 
-    def messages
-      @messages ||= raw_stream.collect do |s|
-        { :message => format_message(s), :created_at => s["created_at"] }
+    def stream
+      @stream ||= raw_stream.collect do |s|
+        { :message => format_message(s), :created_at => Time.parse(s["created_at"]).utc }
       end
     end
 

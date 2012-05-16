@@ -1,6 +1,6 @@
 # Social Current
 
-Makes it easy to integrate the Github activity stream into your application.
+Makes it easy to integrate a social activity stream into your application from third party APIs. Social Current currently only supports GitHub and Twitter but feel free to contribute additional integrations.
 
 ## Installation
 
