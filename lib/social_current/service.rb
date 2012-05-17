@@ -5,7 +5,7 @@ module SocialCurrent
     end
 
     def fetch(remote, local)
-      @contents = if File.exists?("/tmp/#{local}")
+      @contents = if cache_valid?("/tmp/#{local}")
         JSON.parse(File.read("/tmp/#{local}"))
       else
         write_cache(local, JSON.parse(self.class.get(remote).body))
@@ -19,6 +19,10 @@ module SocialCurrent
         f.write(contents.to_json)
       end
       contents
+    end
+
+    def cache_valid?(cache)
+      File.exists?(cache) && File.new(cache).mtime > Time.now - 3000
     end
   end
 end

@@ -1,9 +1,15 @@
 require "test/unit"
 require "fakeweb"
-require "mocha"
 require "social_current"
 
-File.stubs(:exists?).returns(false)
+# Make sure cache isn't used for testing.
+module SocialCurrent
+  class Service
+    def cache_valid?(cache)
+      false
+    end
+  end
+end
 
 FakeWeb.register_uri(:get, "https://api.github.com/users/tristanoneil/events",
   :body         => File.open("test/support/github/stream.json").read,

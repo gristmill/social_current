@@ -3,12 +3,10 @@ module SocialCurrent
     include HTTParty
     base_uri "https://api.github.com"
 
-    # Returns more useful information about the user as a JSON object.
     def raw_user
       @raw_user ||= fetch("/users/#{@user}", "#{@user}_github_raw_user.json")
     end
 
-    # Returns all events as a JSON Response.
     def raw_stream
       @raw_stream ||= fetch("/users/#{@user}/events", "#{@user}_github_raw_stream.json")
     end
