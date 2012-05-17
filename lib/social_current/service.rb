@@ -8,10 +8,8 @@ module SocialCurrent
       @contents = if File.exists?(local)
         JSON.parse(File.read(local))
       else
-        JSON.parse(self.class.get(remote).body)
+        write_cache(local, JSON.parse(self.class.get(remote).body))
       end
-
-      write_cache(local, @contents)
     end
 
     private
