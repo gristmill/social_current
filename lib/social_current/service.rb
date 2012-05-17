@@ -5,8 +5,8 @@ module SocialCurrent
     end
 
     def fetch(remote, local)
-      @contents = if cache_valid?("/tmp/#{local}")
-        JSON.parse(File.read("/tmp/#{local}"))
+      @contents = if cache_valid?(local)
+        JSON.parse(Tempfile.read(local))
       else
         write_cache(local, JSON.parse(self.class.get(remote).body))
       end
@@ -15,14 +15,14 @@ module SocialCurrent
     private
 
     def write_cache(local, contents)
-      File.open("/tmp/#{local}", "w") do |f|
+      Tempfile.new(local) do |f|
         f.write(contents.to_json)
       end
       contents
     end
 
     def cache_valid?(cache)
-      File.exists?(cache) && File.new(cache).mtime > Time.now - 3000
+      Tempfile.open(cache) && Tempfile.open(cache).mtime > Time.now - 3000
     end
   end
 end
