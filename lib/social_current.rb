@@ -1,6 +1,6 @@
 require "httparty"
 require "json"
-require "tempfile"
+require "tmpdir"
 
 require "social_current/version"
 require "social_current/service"
