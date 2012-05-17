@@ -12,6 +12,6 @@ class TestStream < Test::Unit::TestCase
 
   def test_build
     assert_equal "Tristan O'Neil said \"Was thinking @gristmilled should put on a \"How to write a Ruby Gem\" course. It may just directly benefit me. Any interest in #btv?\"", @stream.build[0][:message]
-    assert_equal 43, @stream.build.size
+    assert_equal 42, @stream.build.size
   end
 end

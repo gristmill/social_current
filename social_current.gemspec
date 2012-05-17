@@ -16,4 +16,5 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency     "httparty", "~> 0.8.3"
   gem.add_development_dependency "fakeweb", "~> 1.3.0"
+  gem.add_development_dependency "mocha", "~> 0.11.4"
 end

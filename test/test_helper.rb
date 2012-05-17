@@ -1,6 +1,9 @@
 require "test/unit"
 require "fakeweb"
+require "mocha"
 require "social_current"
+
+File.stubs(:exists?).returns(false)
 
 FakeWeb.register_uri(:get, "https://api.github.com/users/tristanoneil/events",
   :body         => File.open("test/support/github/stream.json").read,
