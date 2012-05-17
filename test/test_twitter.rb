@@ -23,8 +23,4 @@ class TestTwitter < Test::Unit::TestCase
     assert_equal "2012-05-16 13:59:57 UTC", @twitter.stream[0][:created_at].to_s
     assert_equal 13, @twitter.stream.size
   end
-
-  def test_format_message
-    assert_equal "Tristan O'Neil said \"Was thinking @gristmilled should put on a \"How to write a Ruby Gem\" course. It may just directly benefit me. Any interest in #btv?\"", @twitter.format_message(@twitter.raw_stream[0])
-  end
 end
