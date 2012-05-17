@@ -4,8 +4,8 @@ require File.expand_path('../lib/social_current/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Tristan O'Neil"]
   gem.email         = ["tristanoneil@gmail.com"]
-  gem.description   = %q{Makes it easy to integrate the Github activity stream into your application.}
-  gem.summary       = %q{Makes it easy to integrate the Github activity stream into your application.}
+  gem.description   = %q{Makes it easy to integrate a social activity stream into your application from third party APIs.}
+  gem.summary       = %q{Makes it easy to integrate a social activity stream into your application from third party APIs.}
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
