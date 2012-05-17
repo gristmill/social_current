@@ -5,8 +5,8 @@ module SocialCurrent
     end
 
     def fetch(remote, local)
-      @contents = if File.exists?(local)
-        JSON.parse(File.read(local))
+      @contents = if File.exists?("/tmp/#{local}")
+        JSON.parse(File.read("/tmp/#{local}"))
       else
         write_cache(local, JSON.parse(self.class.get(remote).body))
       end
