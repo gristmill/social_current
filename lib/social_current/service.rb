@@ -5,10 +5,16 @@ module SocialCurrent
     end
 
     def fetch(remote, local)
-      @contents = if cache_valid?("#{Dir.tmpdir}/#{local}")
+      if cache_valid?("#{Dir.tmpdir}/#{local}")
         JSON.parse(File.read("#{Dir.tmpdir}/#{local}"))
       else
-        write_cache(local, JSON.parse(self.class.get(remote).body))
+        response = self.class.get(remote)
+        if response.header.code == "404"
+          []
+        else
+          write_cache(local, JSON.parse(response.body))
+          JSON.parse(response.body)
+        end
       end
     end
 
@@ -18,7 +24,6 @@ module SocialCurrent
       File.open("#{Dir.tmpdir}/#{local}", "w") do |f|
         f.write(contents.to_json)
       end
-      contents
     end
 
     def cache_valid?(cache)
