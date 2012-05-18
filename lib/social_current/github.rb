@@ -13,7 +13,7 @@ module SocialCurrent
 
     def stream
       @stream ||= raw_stream.collect do |s|
-        { :message => format_message(s), :created_at => Time.parse(s["created_at"]).utc }
+        { :message => format_message(s), :created_at => Time.parse(s["created_at"]).utc, :service => "github" }
       end
     end
 
