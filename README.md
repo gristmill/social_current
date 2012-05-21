@@ -42,7 +42,7 @@ Then you can easily access this from within your view like.
 
 ```ruby
 <% @user.stream.each do |item| %>
-  <%= item[:message] >
+  <%= item[:message] %>
 <% end %>
 ```
 
