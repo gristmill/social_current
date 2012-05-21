@@ -22,11 +22,11 @@ module SocialCurrent
     def format_message(event)
       case event["type"]
       when "PushEvent"
-        "#{self.raw_user["name"]} pushed to <a href='http://github.com/#{event["repo"]["name"]}'>#{event["repo"]["name"]}</a>."
+        "#{self.raw_user["name"]} pushed #{event["payload"]["commits"].collect { |c| "<a href='http://github.com/#{event["repo"]["name"]}/commit/#{c["sha"]}'>" + c["sha"] + "</a>" }.join(", ")} to <a href='http://github.com/#{event["repo"]["name"]}'>#{event["repo"]["name"]}</a>."
       when "FollowEvent"
         "#{self.raw_user["name"]} followed <a href='#{event["payload"]["target"]["html_url"]}'>#{event["payload"]["target"]["name"]}</a>."
       when "CreateEvent"
-        "#{self.raw_user["name"]} created <a href='http://github.com/#{event["repo"]["name"]}'>#{event["repo"]["name"]}</a>."
+        "#{self.raw_user["name"]} created a new #{event["payload"]["ref_type"]}, #{event["payload"]["ref"]} for <a href='http://github.com/#{event["repo"]["name"]}'>#{event["repo"]["name"]}</a>."
       when "WatchEvent"
         "#{self.raw_user["name"]} started watching <a href='http://github.com/#{event["repo"]["name"]}'>#{event["repo"]["name"]}</a>."
       end
