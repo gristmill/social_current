@@ -1,6 +1,8 @@
 module SocialCurrent
-  class Twitter < Service
+  class TwitterService < Service
     include HTTParty
+    include Twitter::Autolink
+
     base_uri "https://api.twitter.com/1"
 
     def raw_user
@@ -20,7 +22,7 @@ module SocialCurrent
     private
 
     def format_message(status)
-      "#{raw_user["name"]} said \"#{status["text"]}\""
+      auto_link("#{raw_user["name"]} said \"#{status["text"]}\"")
     end
   end
 end

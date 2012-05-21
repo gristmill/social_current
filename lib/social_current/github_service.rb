@@ -1,5 +1,5 @@
 module SocialCurrent
-  class Github < Service
+  class GithubService < Service
     include HTTParty
     base_uri "https://api.github.com"
 

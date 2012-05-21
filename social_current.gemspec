@@ -14,6 +14,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = SocialCurrent::VERSION
 
-  gem.add_runtime_dependency     "httparty", "~> 0.8.3"
-  gem.add_development_dependency "fakeweb", "~> 1.3.0"
+  gem.add_runtime_dependency     "httparty",     "~> 0.8.3"
+  gem.add_runtime_dependency     "twitter-text", "~> 1.4.17"
+  gem.add_development_dependency "fakeweb",      "~> 1.3.0"
 end

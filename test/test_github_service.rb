@@ -2,11 +2,11 @@ require "test_helper"
 
 class TestGithub < Test::Unit::TestCase
   def setup
-    @github = SocialCurrent::Github.new("tristanoneil")
+    @github = SocialCurrent::GithubService.new("tristanoneil")
   end
 
   def test_initialize
-    assert_instance_of SocialCurrent::Github, @github
+    assert_instance_of SocialCurrent::GithubService, @github
     assert_respond_to @github, :raw_stream
   end
 
