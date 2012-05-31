@@ -1,7 +1,7 @@
 module SocialCurrent
   class Stream
     def initialize(options)
-      @options = options.reject { |k, v| !SUPPORTED_INTEGRATIONS.include?(k) }
+      @options = options.reject { |k, v| !SUPPORTED_INTEGRATIONS.include?(k) || v.nil? }
     end
 
     def build
